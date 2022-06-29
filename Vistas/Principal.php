@@ -1,6 +1,7 @@
 <?php 
-$seccion1=null; 
-$seccion2=null; 
+if(!isset($_SESSION['autenticado'])){
+  header("Location: /login");
+}
 ?>
 
 <!doctype html>
@@ -17,7 +18,7 @@ $seccion2=null;
   </head>
   <body>
    
-<?php VistaControlador::generarHTML("Menu"); ?>
+<?php VistaControlador::mostrarPagina("Menu",null); ?>
 
 
 <div class="container my-3">

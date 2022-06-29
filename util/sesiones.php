@@ -9,9 +9,16 @@ function  VerificarSesion(){
     }
 }
 
-function CrearSesion($u){
+function SetValoresDeSesion($u){
     
     $_SESSION["usuario"] = $u->username;
     $_SESSION['autenticado'] = TRUE;
     
+}
+
+function logout(){
+
+    session_destroy();
+    header("Location:/login");
+
 }

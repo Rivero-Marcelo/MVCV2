@@ -18,7 +18,7 @@
         </li>
       </ul>
       <span class="navbar-text">
-        Usuario: <?php echo $_SESSION['usuario']; ?> <a href=""> cerrar sesion</a>
+        Usuario: <?php echo $_SESSION['usuario']; ?> <a href="/logout"> cerrar sesion</a>
       </span>
     </div>
   </div>
