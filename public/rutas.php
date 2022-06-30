@@ -1,6 +1,11 @@
 <?php
 
+require "../util/autoload.php";
 
-Router::Add("/login", "get", "FormularioLogin");
-Router::Add("/login", "post", UsuarioControlador::Login());
+
+
+Router::Add("/login", "get", NULL, "FormularioLogin");
+Router::Add("/login", "post", "UsuarioControlador::Login", NULL);
+
+Router::Add("/app/principal", "get", NULL, "Principal");
 
