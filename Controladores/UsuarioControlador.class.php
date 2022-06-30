@@ -41,13 +41,15 @@ public static function Login(){
 
     if($acceso = $u -> VerificarCredenciales()){
 
+        //echo "llegue bien";
+
         SetValoresDeSesion($u);
         $u -> setFechaHoraDeLogin(); 
-        //VistaControlador::generarHTML("Principal");
+        //VistaControlador::mostrarPagina("Principal",null);
         header("Location: /app/principal");
     
     }else 
-            VistaControlador::mostrarPagina("FormularioLogin",["error" => TRUE]);
+            VistaControlador::mostrarPagina("FormularioLogin",["error" => true]);
 
 }
 

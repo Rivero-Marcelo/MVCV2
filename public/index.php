@@ -4,6 +4,8 @@ require "../util/autoload.php";
 require "../routing/router.class.php"; 
 include "rutas.php";
 
+session_start();
+
 Router::Run();
 
 

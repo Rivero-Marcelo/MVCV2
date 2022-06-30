@@ -8,8 +8,6 @@ class Router {
     private static $metodoActual;
     
 
-
-
 public static function Add($url, $metodo, $funcion, $vista){
 
     array_push(self::$rutas, [  
@@ -18,7 +16,6 @@ public static function Add($url, $metodo, $funcion, $vista){
         'funcion' => $funcion,
         'vista' => $vista
     ]);
-
    
 }
 
@@ -42,16 +39,13 @@ public static function BuscarRuta(){
 
 
 
-public static function evaluarRuta($resultado){
+public static function evaluarMetodo($resultado){
 
-    if($resultado['metodo'] === 'get') VistaControlador::mostrarPagina($resultado['vista'],null); 
+    if($resultado['metodo'] === 'get') return true;
+    return false;
     
 
-    //var_dump($resultado);die();
-
 }
-
-
 
 
 public static function Run(){
@@ -59,14 +53,32 @@ public static function Run(){
     $resultado = self::BuscarRuta();
 
     if($resultado === NULL) VistaControlador::notFound();
-    
-    self::evaluarRuta($resultado);
-    
-    //return $resultado;
- 
+
+    self::evaluarMetodo($resultado) ? self::cargarVista($resultado['vista']) : 
+    self::cargarControlador($resultado['funcion']);
 
 }
 
+
+private static function cargarVista($vista){
+
+    VistaControlador::mostrarPagina($vista,null);
+
+}
+
+
+private static function cargarControlador($funcion){
+
+    $contexto = [
+        'get' => $_GET,
+        'post' => $_POST,
+        'server' => $_SERVER,
+        'session' => $_SESSION
+    ];
+
+    call_user_func($funcion,$contexto);
+
+}
 
 
 
